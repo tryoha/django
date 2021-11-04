@@ -31,7 +31,8 @@ ALLOWED_HOSTS = ['tryoha', '127.0.0.1', '188.242.255.48']
 # Application definition
 
 INSTALLED_APPS = [
-    'main',
+    'main.apps.MainConfig',
+    'polls.apps.PollsConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
