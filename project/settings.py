@@ -56,7 +56,7 @@ ROOT_URLCONF = 'project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -130,7 +130,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # for customize settings develop/production configuration
 try:
     from .local_settings import *
-except ImportError as e:
-    print(e)
+except ImportError as err:
+    print(f'Cannot import: {err}')
 
 SITE_ID = 1
