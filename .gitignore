@@ -130,3 +130,9 @@ dmypy.json
 
 # VS Code
 .vscode/
+
+# CUSTOM 
+static/
+media/
+local_settings.py
+gunicorn_config.py
