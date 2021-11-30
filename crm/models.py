@@ -3,10 +3,27 @@ from phonenumber_field.modelfields import PhoneNumberField
 
 # Create your models here.
 PRICE = (
+    ("И", "Интернет"),
     ("Р", "Розница"),
     ("М", "Мелкий опт"),
     ("О", "Опт"),
     ("Д", "Дистрибьюция"),
+)
+
+DELIVERY_REGIONS = (
+    ("Всеволожск", "ежедневно"),
+    ("Север и цетр", "вторник, четверг, суббота"),
+    ("Юг", "понедельник, среда, пятница"),
+    ("Пригород", "среда"),
+    ("Регион", "регион"),
+)
+
+CLIENT_STATUS = (
+    ("Новый", "Новый"),
+    ("Текущий", "Текущий"),
+    ("Потенциальный", "Потенциальный"),
+    ("Контакт из почты", "Контакт из почты"),
+    ("Архив", "Архив"),
 )
 
 
@@ -18,8 +35,9 @@ class Person(models.Model):
         ("Администратор", "Администратор"),
         ("Сверки", "Сверки"),
     ]
-    position = models.CharField('Должность', max_length=15, choices=PERSON_JOBS, blank=True)
-    email = models.EmailField("Почта", max_length = 254, blank=True)
+    position = models.CharField(
+        'Должность', max_length=15, choices=PERSON_JOBS, blank=True)
+    email = models.EmailField("Почта", max_length=254, blank=True)
     phone = PhoneNumberField("Телефон", blank=True)
     exist = models.BooleanField("Работает", default=True)
     about = models.TextField("Примечания", blank=True)
@@ -27,15 +45,19 @@ class Person(models.Model):
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
 
+
 class Client(models.Model):
     name = models.CharField("Название", max_length=50)
     contact = models.ManyToManyField(Person, blank=True)
     adress = models.CharField("Адрес", max_length=254, blank=True)
     phone = PhoneNumberField("Телефон", blank=True)
-    exist = models.BooleanField("Работает", default=True)
+    status = models.CharField("Cтатус", max_length=20,
+                              choices=CLIENT_STATUS, blank=True)
     about = models.TextField("Примечания", blank=True)
     date_joined = models.DateField("Начало работы", blank=True)
     price_type = models.CharField("Тип цен", max_length=1, choices=PRICE)
+    delivery = models.CharField(
+        "Развозка", max_length=12, choices=DELIVERY_REGIONS, blank=True)
 
     def __str__(self):
-        return self.name        
+        return self.name
