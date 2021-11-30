@@ -9,30 +9,33 @@ PRICE = (
     ("Д", "Дистрибьюция"),
 )
 
-class Client(models.Model):
-    name = models.CharField("Название", max_length=50)
-    persons = models.ManyToManyField(Person, blank=True)
-    adress = models.CharField("Адрес", max_length=254, blank=True)
-    phone = models.ForeignKey(Person, blank=True)
-    function = models.BooleanField("Работает", default=True)
-    about = models.TextField("Примечания", blank=True)
-    date_joined = models.DateField()
-    price_type = models.CharField("Тип цен", max_length=1, choices=PRICE)
-
-    def __str__(self):
-        return self.name
-
-
 
 class Person(models.Model):
     first_name = models.CharField('Имя', max_length=30)
     last_name = models.CharField("Фамилия", max_length=30, blank=True)
-    position = models.TextChoices('Должность', 'учредитель администратор сверки')
+    PERSON_JOBS = [
+        ("Учредитель", "Учредитель"),
+        ("Администратор", "Администратор"),
+        ("Сверки", "Сверки"),
+    ]
+    position = models.CharField('Должность', max_length=15, choices=PERSON_JOBS, blank=True)
     email = models.EmailField("Почта", max_length = 254, blank=True)
-    phone = PhoneNumberField(blank=True)
-    function = models.BooleanField("Работает", default=True)
-    enterprise = models.ManyToManyField(Client, blank=True)
+    phone = PhoneNumberField("Телефон", blank=True)
+    exist = models.BooleanField("Работает", default=True)
     about = models.TextField("Примечания", blank=True)
 
     def __str__(self):
-        return self.first_name
+        return f'{self.first_name} {self.last_name}'
+
+class Client(models.Model):
+    name = models.CharField("Название", max_length=50)
+    contact = models.ManyToManyField(Person, blank=True)
+    adress = models.CharField("Адрес", max_length=254, blank=True)
+    phone = PhoneNumberField("Телефон", blank=True)
+    exist = models.BooleanField("Работает", default=True)
+    about = models.TextField("Примечания", blank=True)
+    date_joined = models.DateField("Начало работы", blank=True)
+    price_type = models.CharField("Тип цен", max_length=1, choices=PRICE)
+
+    def __str__(self):
+        return self.name        
