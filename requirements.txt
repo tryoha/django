@@ -1,0 +1,11 @@
+Package                  Version
+------------------------ -------
+asgiref                  3.4.1
+Django                   3.2.9
+django-phonenumber-field 6.0.0
+phonenumbers             8.12.38
+pip                      21.3.1
+pkg_resources            0.0.0
+pytz                     2021.3
+setuptools               44.0.0
+sqlparse                 0.4.2

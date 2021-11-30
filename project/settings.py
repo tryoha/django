@@ -32,8 +32,11 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'crm',
-    'main.apps.MainConfig',
-    'polls.apps.PollsConfig',
+    'main',
+    'polls',
+
+    'phonenumber_field',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
