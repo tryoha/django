@@ -58,6 +58,7 @@ class Client(models.Model):
     price_type = models.CharField("Тип цен", max_length=1, choices=PRICE)
     delivery = models.CharField(
         "Развозка", max_length=12, choices=DELIVERY_REGIONS, blank=True)
+    slug = models.SlugField("Ссылка", unique=True, max_length=40)    
 
     def __str__(self):
         return self.name
