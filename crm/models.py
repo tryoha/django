@@ -28,19 +28,23 @@ CLIENT_STATUS = (
 
 class Client(models.Model):
     name = models.CharField("Название", max_length=50)
+    slug = models.SlugField("Ссылка", unique=True, max_length=50)
     adress = models.CharField("Адрес", max_length=254, blank=True)
-    phone = PhoneNumberField("Телефон", blank=True)
     status = models.CharField("Cтатус", max_length=20,
                               choices=CLIENT_STATUS, blank=True)
-    about = models.TextField("Примечания", blank=True)
     date_joined = models.DateField("Начало работы", blank=True)
-    price_type = models.CharField("Тип цен", max_length=1, choices=PRICE)
+    price_type = models.CharField(
+        "Тип цен", max_length=1, choices=PRICE, blank=True)
     delivery = models.CharField(
         "Развозка", max_length=12, choices=DELIVERY_REGIONS, blank=True)
-    slug = models.SlugField("Ссылка", unique=True, max_length=40)
+    about = models.TextField("Примечания", blank=True)
 
     def __str__(self):
         return self.name
+
+    class Meta:
+        verbose_name = 'Клиент'
+        verbose_name_plural = 'Клиенты'
 
 
 class Person(models.Model):
@@ -57,7 +61,10 @@ class Person(models.Model):
     email = models.EmailField("Почта", max_length=254, blank=True)
     phone = PhoneNumberField("Телефон", blank=True)
     exist = models.BooleanField("Работает", default=True)
-    # about = models.TextField("Примечания", blank=True)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
+
+    class Meta:
+        verbose_name = 'Контакт'
+        verbose_name_plural = 'Контакты'
