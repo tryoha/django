@@ -27,7 +27,7 @@ CLIENT_STATUS = (
 
 
 class Client(models.Model):
-    name = models.CharField("Название", max_length=50)
+    name = models.CharField("Название", max_length=50, db_index=True)
     slug = models.SlugField("Ссылка", unique=True, max_length=50)
     adress = models.CharField("Адрес", max_length=254, blank=True)
     status = models.CharField("Cтатус", max_length=20,
