@@ -1,0 +1,1 @@
+/home/tryoha/django/.env/bin/gunicorn -c /home/tryoha/django/gunicorn_config.py project.wsgi:application
