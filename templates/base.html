@@ -101,7 +101,7 @@
     </svg>
     <main>
         <div class="d-flex flex-column flex-shrink-0 bg-light" style="width: 4.5rem;">
-            <a href="/" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip"
+            <a href="{% url 'main:index' %}" class="d-block p-3 link-dark text-decoration-none" title="" data-bs-toggle="tooltip"
                 data-bs-placement="right" data-bs-original-title="tryoha.gq">
                 <svg class="bi" width="40" height="32">
                     <use xlink:href="#bootstrap"></use>
@@ -110,7 +110,7 @@
             </a>
             <ul class="nav nav-pills nav-flush flex-column mb-auto text-center">
                 <li class="nav-item">
-                    <a href="#" class="nav-link py-3 border-bottom" aria-current="page" title=""
+                    <a href="{% url 'main:index' %}" class="nav-link py-3 border-bottom" aria-current="page" title=""
                         data-bs-toggle="tooltip" data-bs-placement="right" data-bs-original-title="Home">
                         <svg class="bi" width="24" height="24" role="img" aria-label="Home">
                             <use xlink:href="#home"></use>
@@ -120,23 +120,23 @@
                 <li>
                     <a href="{% url 'polls:index' %}" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip"
                         data-bs-placement="right" data-bs-original-title="Polls">
-                        <svg class="bi" width="24" height="24" role="img" aria-label="Dashboard">
+                        <svg class="bi" width="24" height="24" role="img" aria-label="Polls">
                             <use xlink:href="#speedometer2"></use>
                         </svg>
                     </a>
                 </li>
                 <li>
                     <a href="{% url 'crm:index' %}" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip"
-                        data-bs-placement="right" data-bs-original-title="Orders">
-                        <svg class="bi" width="24" height="24" role="img" aria-label="Orders">
+                        data-bs-placement="right" data-bs-original-title="CRM">
+                        <svg class="bi" width="24" height="24" role="img" aria-label="CRM">
                             <use xlink:href="#table"></use>
                         </svg>
                     </a>
                 </li>
                 <li>
-                    <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip"
-                        data-bs-placement="right" data-bs-original-title="Products">
-                        <svg class="bi" width="24" height="24" role="img" aria-label="Products">
+                    <a href="{% url 'news:index' %}" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip"
+                        data-bs-placement="right" data-bs-original-title="News">
+                        <svg class="bi" width="24" height="24" role="img" aria-label="News">
                             <use xlink:href="#grid"></use>
                         </svg>
                     </a>

@@ -3,7 +3,7 @@
 <div class="container mt-3 hs">
     <div class="row">
         <div class="col">
-            <h1>News</h1>
+            <h1>{{ category.title }}</h1>
         </div>
     </div>
     <div class="row mt-3">
@@ -20,7 +20,7 @@
                     </div>
                     <div class="col-md-9">
                         <div class="card-body">
-                            <h5 class="card-title"> <a href="{{ news.category.slug }}">{{ news.category }}:</a> {{ news.title }}</h5>
+                            <h5 class="card-title"> {{ news.category }}: {{ news.title }}</h5>
                             <p class="card-text">{{ news.content|linebreaks|truncatewords:100  }}</p>
                             <p class="card-text"><small class="text-muted">{{ news.updated_at }} </small></p>
                             <a href="{{ news.get_absolute_url }}" class="btn btn-primary">Подробнее</a>
