@@ -23,6 +23,7 @@ urlpatterns = [
     path('polls/', include('polls.urls')),
     path('crm/', include('crm.urls')),
     path('news/', include('news.urls')),
+    path('catalog/', include('catalog.urls')),
 
     path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

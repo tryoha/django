@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from django.utils.translation import templatize
 from django.views import generic
 
-from .models import Category, News
+from .models import News
 
+from django.forms import modelformset_factory
 
 class IndexView(generic.ListView):
     model = News
@@ -11,6 +11,7 @@ class IndexView(generic.ListView):
 
     def get_queryset(self):
         return News.objects.filter(is_published=True)
+
 
 class CategoryView(generic.ListView):
     model = News
@@ -26,3 +27,15 @@ class NewsView(generic.DetailView):
 
     def get_queryset(self):
         return News.objects.filter(slug=self.kwargs['slug'], is_published=True)
+
+
+def add_news(request):
+    NewsFormSet = modelformset_factory(News, fields=('title', 'photo', 'content', 'is_published', 'category'))
+    if request.method == 'POST':
+        formset = NewsFormSet(request.POST, request.FILES)
+        if formset.is_valid():
+            formset.save()
+            # do something.
+    else:
+        formset = NewsFormSet()
+    return render(request, 'news/add.html', {'formset': formset})

@@ -5,7 +5,7 @@ class News(models.Model):
     title = models.CharField('Наименование', max_length=150)
     content = models.TextField('Контент', blank=True)
     created_at = models.DateTimeField('Дата публикации', auto_now_add=True)
-    updated_at = models.DateTimeField('Обновлено', auto_now_add=True)
+    updated_at = models.DateTimeField('Обновлено', auto_now=True)
     photo = models.ImageField('Картинка', upload_to='media/photos/%Y/%m/%d/', blank=True, null=True)
     is_published = models.BooleanField('Опубликовано', default=True)
     category = models.ForeignKey(
