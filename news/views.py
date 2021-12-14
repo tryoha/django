@@ -1,9 +1,10 @@
 from django.shortcuts import render
+from django.urls import reverse
 from django.views import generic
 
 from .models import News
+from.forms import NewsForm
 
-from django.forms import modelformset_factory
 
 class IndexView(generic.ListView):
     model = News
@@ -30,12 +31,11 @@ class NewsView(generic.DetailView):
 
 
 def add_news(request):
-    NewsFormSet = modelformset_factory(News, fields=('title', 'photo', 'content', 'is_published', 'category'))
     if request.method == 'POST':
-        formset = NewsFormSet(request.POST, request.FILES)
-        if formset.is_valid():
-            formset.save()
-            # do something.
+        form = NewsForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return reverse('news:index')
     else:
-        formset = NewsFormSet()
-    return render(request, 'news/add.html', {'formset': formset})
+        form = NewsForm()
+    return render(request, 'news/add.html', {'form': form})

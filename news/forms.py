@@ -6,6 +6,6 @@ class NewsForm(ModelForm):
 
     class Meta:
         model = News
-        fields = ['title', 'photo', 'content', 'is_published', 'category']
+        fields = ['title', 'category', 'slug', 'photo', 'content', 'is_published']
 
     
