@@ -1,9 +1,10 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 from django.views import generic
 
 from .models import News
-from.forms import NewsForm
+from .forms import NewsForm
 
 
 class IndexView(generic.ListView):
@@ -35,7 +36,7 @@ def add_news(request):
         form = NewsForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            return reverse('news:index')
+            return HttpResponseRedirect(reverse('news:index'))
     else:
         form = NewsForm()
     return render(request, 'news/add.html', {'form': form})

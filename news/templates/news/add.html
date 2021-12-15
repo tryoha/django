@@ -1,11 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 <div class="container hs">
-    <div class='mt-3'>
+    <div><h1>Добавить новость</h1></div>
+    <div class='mt-5'>
         <form action="{% url 'news:add' %}"   method="post">
             {% csrf_token %}
-            {{ form }}
-            <input type="submit" value="Отправить">
+            {{ form.as_p }}
+            <button type="submit" class='btn btn-primary'>Добавить новость</button>
         </form>
     </div>
 </div>
