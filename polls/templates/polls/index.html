@@ -1,11 +1,15 @@
 {% extends 'base.html' %}
 {% block content %}
 {% if latest_question_list %}
-<ul>
-    {% for question in latest_question_list %}
-    <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li> {% endfor %}
-</ul>
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column text-center">
+    <ul>
+        {% for question in latest_question_list %}
+        <li><a href="{% url 'polls:detail' question.id %}">{{ question.question_text }}</a></li> {% endfor %}
+    </ul>
+</div>
 {% else %}
-<p>No polls are available.</p>
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column text-center">
+    <h1 class="">No polls are available.</h1>
+</div>
 {% endif %}
 {% endblock %}
