@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     "crispy_bootstrap5",
     'allauth',
     'allauth.account',
-
+    "debug_toolbar",
 ]
 
 MIDDLEWARE = [
@@ -61,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "debug_toolbar.middleware.DebugToolbarMiddleware",
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -154,8 +155,8 @@ SITE_ID = 1
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'main.CustomUser'
 
-LOGIN_REDIRECT_URL = 'main'
-LOGOUT_REDIRECT_URL = 'main'
+LOGIN_REDIRECT_URL = 'main:index'
+LOGOUT_REDIRECT_URL = 'main:index'
 
 # Crispy forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
@@ -177,3 +178,7 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True 
 ACCOUNT_UNIQUE_EMAIL = True 
+
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
