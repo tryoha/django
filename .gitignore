@@ -137,3 +137,5 @@ media/
 local_settings.py
 .idea/
 tags
+gunicorn_config.py
+gunicorn
