@@ -16,7 +16,7 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'main/css/style.css' %}" rel="stylesheet">
 
-    <title>tryoha.gq</title>
+    <title>{% block title %}tryoha.gq{% endblock title %}</title>
 
 </head>
 
@@ -139,14 +139,16 @@
                         </svg>
                     </a>
                 </li>
+                {% if user.is_superuser %}
                 <li>
-                    <a href="#" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip"
+                    <a href="{% url 'admin:index' %}" class="nav-link py-3 border-bottom" title="" data-bs-toggle="tooltip"
                         data-bs-placement="right" data-bs-original-title="Customers">
                         <svg class="bi" width="24" height="24" role="img" aria-label="Customers">
                             <use xlink:href="#people-circle"></use>
                         </svg>
                     </a>
                 </li>
+                {% endif %}
             </ul>
             <div class="dropdown border-top">
                 <a href="#"

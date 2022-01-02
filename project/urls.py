@@ -26,7 +26,7 @@ urlpatterns = [
     path('news/', include('news.urls')),
     path('catalog/', include('catalog.urls')),
 
-    path('admin/', admin.site.urls),
+    path('admin-manage/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 if settings.DEBUG:
