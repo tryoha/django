@@ -16,7 +16,7 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'main/css/style.css' %}" rel="stylesheet">
 
-    <title>{% block title %}tryoha.gq{% endblock title %}</title>
+    <title>tryoha.gq | {% block title %} home {% endblock title %}</title>
 
 </head>
 
@@ -165,10 +165,11 @@
                     {% if user.is_superuser %}
                     <li><a class="dropdown-item" href="{% url 'news:add'  %}">Добавить новость</a></li>
                     {% endif %}
-                    <li><a class="dropdown-item" href="#">Профиль</a></li>
+                    <li><a class="dropdown-item" href="{% url 'account_change_password' %}">Смена пароля</a></li>
                     <li><a class="dropdown-item" href="{% url 'account_logout' %}">Выйти</a></li>
                     {% else %}
                     <li><a class="dropdown-item" href="{% url 'account_signup' %}">Регистрация</a></li>
+                    <li><a class="dropdown-item" href="{% url 'account_reset_password' %}">Сброс пароля</a></li>
                     <li>
                         <hr class="dropdown-divider">
                     </li>

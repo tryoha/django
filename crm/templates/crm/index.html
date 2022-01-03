@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
-
+{% block title %} crm {% endblock title %}
 {% block content %}
-{% if object_list %}
+{% if client_list %}
 <div class="cover-container d-flex h-100 p-3 mx-auto flex-column text-center">
 <ul>
-    {% for client in object_list %}
+    {% for client in client_list %}
     <li><a href="{% url 'crm:detail' client.slug %}">{{ client.name }}</a></li>
     {% endfor %}
 </ul>
