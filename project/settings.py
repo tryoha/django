@@ -51,7 +51,6 @@ INSTALLED_APPS = [
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
-    'allauth.socialaccount.providers.mailru',
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.yandex',
     "debug_toolbar",
@@ -181,6 +180,8 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_AUTHENTICATION_METHOD = 'email'
 ACCOUNT_EMAIL_REQUIRED = True 
 ACCOUNT_UNIQUE_EMAIL = True 
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 60
+ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
 
 INTERNAL_IPS = [
     "127.0.0.1",
