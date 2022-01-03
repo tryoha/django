@@ -139,3 +139,4 @@ local_settings.py
 tags
 gunicorn_config.py
 gunicorn
+certs/
