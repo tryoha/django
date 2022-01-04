@@ -20,17 +20,14 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('', include('main.urls')),
-    path('accounts/', include('allauth.urls')),
     path('polls/', include('polls.urls')),
     path('crm/', include('crm.urls')),
     path('news/', include('news.urls')),
     path('catalog/', include('catalog.urls')),
 
-    path('admin-manage/', admin.site.urls),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+    path('__debug__/', include('debug_toolbar.urls')),
+    path('accounts/', include('allauth.urls')),
 
-if settings.DEBUG:
-    urlpatterns = [
-        path('__debug__/', include('debug_toolbar.urls')),
-    ] + urlpatterns
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('admin-manage/', admin.site.urls),
+    
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

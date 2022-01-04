@@ -3,15 +3,17 @@
 {% block content %}
 {% if client_list %}
 <div class="cover-container d-flex h-100 p-3 mx-auto flex-column text-center">
-<ul>
-    {% for client in client_list %}
-    <li><a href="{% url 'crm:detail' client.slug %}">{{ client.name }}</a></li>
-    {% endfor %}
-</ul>
+    <ul>
+        {% for client in client_list %}
+        <li><a href="{% url 'crm:detail' client.slug %}">{{ client.name }}</a></li>
+        {% endfor %}
+    </ul>
 </div>
 {% else %}
 <div class="cover-container d-flex h-100 p-3 mx-auto flex-column text-center">
-<h1>No clients</h1>
+    <div class="position-absolute top-50 translate-middle">
+        <h1>Клиенты не заведены</h1>
+    </div>
 </div>
 {% endif %}
 {% endblock content %}

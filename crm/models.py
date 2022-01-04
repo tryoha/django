@@ -45,6 +45,9 @@ class Client(models.Model):
     class Meta:
         verbose_name = 'Клиент'
         verbose_name_plural = 'Клиенты'
+        permissions = [
+            ('special_status', 'Просмотр всех clients'),
+        ]
 
 
 class Person(models.Model):
