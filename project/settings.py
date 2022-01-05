@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,10 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-7nvfksfq)gc@k5&j1gixyif@p(bcr#0j0&nd+8d^%2!mz0j8ci'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = int(os.environ.get('DEBUG', default=1))
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = os.environ.get('SERVERNAMES').split(',')
 
 # Application definition
 
@@ -93,8 +93,12 @@ WSGI_APPLICATION = 'project.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'postgres',
+        'USER': 'postgres',
+        'PASSWORD': 'postgres',
+        'HOST': 'db',
+        'PORT': 5432
     }
 }
 
@@ -146,13 +150,6 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# OVERRIDED AND CUSTOM SETTINGS
-# for customize settings develop/production configuration
-try:
-    from .local_settings import *
-except ImportError as err:
-    print(f'Cannot import: {err}')
-
 SITE_ID = 1
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
@@ -163,7 +160,6 @@ LOGOUT_REDIRECT_URL = 'main:index'
 
 # Crispy forms
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
-
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # Allauth
@@ -186,3 +182,12 @@ ACCOUNT_DEFAULT_HTTP_PROTOCOL='https'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+DEFAULT_FROM_EMAIL = os.environ.get('DEFAULT_FROM_EMAIL')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.environ.get('EMAIL_HOST_PASSWORD')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
+# EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL')
+SERVER_EMAIL = EMAIL_HOST_USER

@@ -1,0 +1,30 @@
+version: '3.9'
+services:
+  web:
+    build: .
+    command: python /code/manage.py runserver 0.0.0.0:8080
+    environment: 
+      - SECRET_KEY=django-insecure-qye2%72!p6l19dt+)8ux8d901w1f%vs$$6zvfx4f5jfns%z7^f3
+      - SERVERNAMES=tryoha.gq,188.242.255.48,tryoha,127.0.0.1,localhost
+      - DEBUG=1
+      - DEFAULT_FROM_EMAIL=admin@tryoha.gq
+      - EMAIL_HOST=localhost
+      - EMAIL_HOST_USER=admin@tryoha.gq
+      - EMAIL_HOST_PASSWORD=pass
+      - EMAIL_PORT=465
+      - EMAIL_USE_TLS=True
+    volumes:
+      - .:/code 
+    ports:
+      - 8080:8080
+    depends_on:
+      - db
+  db:
+    image: postgres:12
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres   
+volumes:
+  postgres_data:  
