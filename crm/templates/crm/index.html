@@ -1,19 +1,24 @@
 {% extends 'base.html' %}
 {% block title %} crm {% endblock title %}
 {% block content %}
-{% if client_list %}
 <div class="cover-container d-flex h-100 p-3 mx-auto flex-column text-center">
-    <ul>
-        {% for client in client_list %}
-        <li><a href="{% url 'crm:detail' client.slug %}">{{ client.name }}</a></li>
-        {% endfor %}
-    </ul>
-</div>
-{% else %}
-<div class="cover-container d-flex h-100 p-3 mx-auto flex-column text-center">
+    {{ perms }}
+    {% if not perms.clients.special_status %}
     <div class="position-absolute top-50 translate-middle">
-        <h1>Клиенты не заведены</h1>
+        <h1>Пусто....</h1>
     </div>
+    {% else %}
+        {% if client_list %}
+        <ul>
+            {% for client in client_list %}
+            <li><a href="{% url 'crm:detail' client.slug %}">{{ client.name }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div class="position-absolute top-50 translate-middle">
+            <h1>Клиенты не заведены</h1>
+        </div>
+        {% endif %}
+    {% endif %}    
 </div>
-{% endif %}
 {% endblock content %}

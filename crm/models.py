@@ -46,7 +46,7 @@ class Client(models.Model):
         verbose_name = 'Клиент'
         verbose_name_plural = 'Клиенты'
         permissions = [
-            ('special_status', 'Просмотр всех clients'),
+            ('special_status', 'Can view clients'),
         ]
 
 

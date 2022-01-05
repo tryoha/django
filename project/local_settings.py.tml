@@ -1,12 +1,20 @@
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = ['127.0.0.1', 'tryoha.gq', 'tryoha', 'localhost', 'www.tryoha.gq']
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'myproject',
-        'USER': 'myprojectuser',
-        'PASSWORD': 'password',
+        'NAME': 'djproject22',
+        'USER': 'djprjusr_22',
+        'PASSWORD': '=pD&T.eMG0|!;g5EN>#',
         'HOST': 'localhost',
         'PORT': '',
     }
 }
+
+DEFAULT_FROM_EMAIL = 'admin@tryoha.gq'
+# EMAIL_HOST_PASSWORD = ''
+# EMAIL_HOST_USER = 'admin@tryoha.gq'
+# EMAIL_PORT = 25
+# EMAIL_USE_TLS = True
+# EMAIL_SSL_CERTFILE = BASE_DIR / "certs" / "certificate.crt"
+# EMAIL_SSL_KEYFILE = BASE_DIR / "certs" / "private.key"
