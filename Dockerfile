@@ -11,3 +11,5 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 # Copy project
 COPY . /code/
+# Collect static files
+RUN python manage.py collectstatic --noinput

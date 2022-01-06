@@ -141,3 +141,4 @@ gunicorn
 certs/
 static/debug_toolbar
 static/admin
+docker-compose.yml
