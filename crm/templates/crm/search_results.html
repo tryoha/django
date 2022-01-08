@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %} Поиск {% endblock title %}
+{% block content %}
+<div class="cover-container d-flex h-100 p-3 mx-auto flex-column text-center">
+    {% if not perms.clients.special_status %}
+    <div class="position-absolute top-50 translate-middle">
+        <h1>Пусто....</h1>
+    </div>
+    {% else %}
+        {% if client_list %}
+        <h1>Результаты поиска</h1>
+        <ul>
+            {% for client in client_list %}
+            <li><a href="{% url 'crm:detail' client.slug %}">{{ client.name }}</a></li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <div class="position-absolute top-50 translate-middle">
+            <h1>Ничего не нашлось</h1>
+        </div>
+        {% endif %}
+    {% endif %}    
+</div>
+{% endblock content %}

@@ -191,3 +191,9 @@ EMAIL_PORT = os.environ.get('EMAIL_PORT')
 EMAIL_USE_TLS = os.environ.get('EMAIL_USE_TLS')
 # EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL')
 SERVER_EMAIL = EMAIL_HOST_USER
+
+
+if DEBUG:
+    import socket  # only if you haven't already imported this
+    hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
+    INTERNAL_IPS = [ip[:-1] + '1' for ip in ips] + ['127.0.0.1', ]    

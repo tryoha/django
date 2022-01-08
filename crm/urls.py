@@ -1,9 +1,10 @@
 from django.urls import path
 
-from . import views
+from .views import IndexView, DetailView, SearchResultsListView
 
 app_name = 'crm'
 urlpatterns = [
-    path('', views.IndexView.as_view(), name='index'),
-    path('<slug:slug>/', views.DetailView.as_view(), name='detail'),
+    path('', IndexView.as_view(), name='index'),
+    path('search/', SearchResultsListView.as_view(), name='search_results'),
+    path('<slug:slug>/', DetailView.as_view(), name='detail'),
 ]
