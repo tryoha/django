@@ -16,17 +16,18 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+ENVIRONMENT = os.environ.get('ENVIRONMENT', default='development')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-7nvfksfq)gc@k5&j1gixyif@p(bcr#0j0&nd+8d^%2!mz0j8ci'
+SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = int(os.environ.get('DEBUG', default=1))
 
-ALLOWED_HOSTS = os.environ.get('SERVERNAMES').split(',')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
 
 # Application definition
 
@@ -57,6 +58,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'django.middleware.cache.UpdateCacheMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -65,6 +67,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     "debug_toolbar.middleware.DebugToolbarMiddleware",
+    'django.middleware.cache.FetchFromCacheMiddleware',
 ]
 
 ROOT_URLCONF = 'project.urls'
@@ -197,3 +200,20 @@ if DEBUG:
     import socket  # only if you haven't already imported this
     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
     INTERNAL_IPS = [ip[:-1] + '1' for ip in ips] + ['127.0.0.1', ]    
+
+# Cache settings
+CACHE_MIDDLEWARE_ALIAS = 'default'
+CACHE_MIDDLEWARE_SECONDS = 604800
+CACHE_MIDDLEWARE_KEY_PREFIX = ''
+
+
+if ENVIRONMENT == 'production':
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE =True
+    X_FRAME_OPTIONS = 'DENY'
+    SECURE_HSTS_SECONDS = 3600 
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True 
+    SECURE_HSTS_PRELOAD = True 
+    SECURE_CONTENT_TYPE_NOSNIFF = True 
