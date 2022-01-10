@@ -141,5 +141,7 @@ gunicorn
 certs/
 static/debug_toolbar
 static/admin
-docker-compose.yml
-docker-compose-prod.yml
+.env.dev
+.env.dev.db
+.env.prod
+.env.prod.db
