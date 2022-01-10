@@ -5,7 +5,9 @@
         {% if user.is_authenticated %}
         <p>Hi {{ user.email }}!</p>
         {% else %}
-        <h1>Under construction</h1>
+        <div class="position-absolute top-50 translate-middle">
+                <h1>Under construction</h1>
+        </div>
         {% endif %}
 </div>
 {% endblock %}
