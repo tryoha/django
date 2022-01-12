@@ -28,7 +28,7 @@ class News(models.Model):
 class Category(models.Model):
     title = models.CharField(
         max_length=150, db_index=True, verbose_name='Наименование')
-    photo = models.ImageField('Картинка', upload_to='photos/%Y/%m/%d/', null=True)
+    photo = models.ImageField('Картинка', upload_to='photos/%Y/%m/%d/', null=True, blank=True)
     slug = models.SlugField("Ссылка", unique=True, max_length=50)
 
 

@@ -1,4 +1,3 @@
-from typing import ClassVar
 from django.contrib import admin
 
 # Register your models here.
@@ -9,6 +8,8 @@ class NewsAdmin(admin.ModelAdmin):
     list_display_links = ('id', 'title')
     search_fields = ('title', 'content')
     prepopulated_fields = {"slug": ("title",)}
+    date_hierarchy = 'updated_at'
+    ordering = ('is_published', 'updated_at')
 
 
 
