@@ -32,10 +32,11 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', default='127.0.0.1').split(',')
 # Application definition
 
 INSTALLED_APPS = [
-    'crm',
-    'main',
-    'polls',
-    'news',
+    'crm.apps.CrmConfig',
+    'main.apps.MainConfig',
+    'polls.apps.PollsConfig',
+    'news.apps.NewsConfig',
+    'catalog.apps.CatalogConfig',
 
     'phonenumber_field',
 
