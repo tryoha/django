@@ -32,8 +32,8 @@ class Migration(migrations.Migration):
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('title', models.CharField(max_length=150, verbose_name='Наименование')),
                 ('content', models.TextField(blank=True, verbose_name='Контент')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')),
-                ('updated_at', models.DateTimeField(auto_now=True, verbose_name='Обновлено')),
+                ('created', models.DateTimeField(auto_now_add=True, verbose_name='Дата публикации')),
+                ('updated', models.DateTimeField(auto_now=True, verbose_name='Обновлено')),
                 ('photo', models.ImageField(blank=True, null=True, upload_to='photos/%Y/%m/%d/', verbose_name='Картинка')),
                 ('is_published', models.BooleanField(default=True, verbose_name='Опубликовано')),
                 ('slug', models.SlugField(unique=True, verbose_name='Ссылка')),
@@ -42,7 +42,7 @@ class Migration(migrations.Migration):
             options={
                 'verbose_name': 'Новость',
                 'verbose_name_plural': 'Новости',
-                'ordering': ['-created_at'],
+                'ordering': ['-created'],
             },
         ),
     ]

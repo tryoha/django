@@ -4,8 +4,8 @@ from django.db import models
 class News(models.Model):
     title = models.CharField('Наименование', max_length=150)
     content = models.TextField('Контент', blank=True)
-    created_at = models.DateTimeField('Дата публикации', auto_now_add=True)
-    updated_at = models.DateTimeField('Обновлено', auto_now=True)
+    created = models.DateTimeField('Дата публикации', auto_now_add=True)
+    updated = models.DateTimeField('Обновлено', auto_now=True)
     photo = models.ImageField('Картинка', upload_to='photos/%Y/%m/%d/', blank=True, null=True)
     is_published = models.BooleanField('Опубликовано', default=True)
     category = models.ForeignKey(
@@ -18,7 +18,7 @@ class News(models.Model):
     class Meta:
         verbose_name = 'Новость'
         verbose_name_plural = 'Новости'
-        ordering = ['-created_at']
+        ordering = ['-created']
 
     def get_absolute_url(self):
         from django.shortcuts import reverse
